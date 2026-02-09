@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 
 import { Telegraf } from 'telegraf'
 
-import express from 'express';
+import express from 'express'
 
 
 dotenv.config()
