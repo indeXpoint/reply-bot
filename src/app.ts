@@ -33,3 +33,16 @@ const onMessage = (ctx: any) => {
 bot.start((ctx) => ctx.reply(welcomeMessage))
 bot.on('text', onMessage)
 bot.launch()
+
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (_, res) => {
+  res.send("Proxy bot is running");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
