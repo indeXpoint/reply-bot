@@ -2,7 +2,6 @@ import * as dotenv from 'dotenv'
 
 import { Telegraf } from 'telegraf'
 
-import express from 'express'
 
 
 dotenv.config()
@@ -37,24 +36,3 @@ bot.start((ctx) => ctx.reply(welcomeMessage))
 bot.on('text', onMessage)
 bot.launch()
 
-const PORT = process.env.PORT || 3000;  // Render provides this port
-const BOT_TOKEN = process.env.BOT_TOKEN;
-
-if (!BOT_TOKEN) throw new Error("BOT_TOKEN not set");
-
-const bot = new TelegramBot(BOT_TOKEN, { polling: true });
-const app = express();
-
-// Minimal route so Render detects a running web server
-app.get('/', (req, res) => {
-  res.send('Telegram bot server is running!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
-
-// Example bot command
-bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, 'Hello! Bot is running.');
-});
